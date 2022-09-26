@@ -1,7 +1,8 @@
 import {Todo} from "../model/Todo";
 import {useState} from "react";
 import TodoCard from "./TodoCard";
-import axios from 'axios'
+import axios from "axios";
+import './TodoList.css';
 
 
 type todoListProps = {
@@ -15,21 +16,19 @@ export default function TodoList(props: todoListProps) {
     const addTodo = () => setToDos(toDos)
 
 
-return(
+    return (
 
+        <div className={"container"}>
+        <div className={"Card"}>
+            {props.todos.map(todo => <TodoCard todo={todo}/>)}
+            <input className={"input"} onChange={(event) => setToDos([event.target.value])}/>
+            <button onClick={addTodo}>Press to Post</button>
 
+            <p>Typed in: {toDos}</p>
+        </div>
+        </div>
 
-    <div>
-        {props.todos.map(todo => <TodoCard todo={todo} />)}
-        <input className={"input"} onChange={(event) => setToDos([event.target.value]) }/>
-         <button onClick={addTodo}/>
-
-        <p>Typed in: {toDos}</p>
-    </div>
-
-
-)
-
+    )
 
 
 }
